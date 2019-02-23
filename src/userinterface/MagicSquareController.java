@@ -67,7 +67,7 @@
 
 		//manages the data choosen by the user so it can be shown at the right side of the GUI
 		//_____________________________________________________________________________________
-
+		try {
 			//order given by the user
 			int order = Integer.parseInt(orderTextField.getText());
 	
@@ -132,9 +132,15 @@
 					gridpane.add(new Button(" "+ms[i][j] +" "),j,i);
 				}
 			}
+		
 			
 		//_______________________________________________________________________________________
 			
+		}
+	}
+	catch (IllegalArgumentException illegalargumentexception)
+		{
+			lbMessage.setText("YOU CAN ONLY TYPE NUMBERS IN THE ORDER TEXT FIELD" + " " + illegalargumentexception.getMessage());
 		}
 	}
 //_______________________________________________________________________________________________________________________________________
