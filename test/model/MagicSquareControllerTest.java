@@ -11,12 +11,17 @@
 //_____________________________________________________Scenaries______________________________________________________________________	
 	
 	class MagicSquareControllerTest {
-
+		
+		private MagicSquare magicsquare;
+		
+		private void setUpScenary1() {
+			int order = 9;
+			MagicSquare magicsquare = new MagicSquare(order);
+		}
 //____________________________________________________Test Methods____________________________________________________________________
 		
 		@Test
 		void createMagicSquareTest() {
-			
 			
 		}
 		
