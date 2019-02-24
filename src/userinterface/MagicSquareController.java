@@ -11,7 +11,8 @@
 	import javafx.event.ActionEvent;
 	import javafx.scene.layout.GridPane;
 	import model.MagicSquare;
-	import javafx.scene.control.Button;
+import model.NotAnOddException;
+import javafx.scene.control.Button;
 	import javafx.scene.layout.BorderPane;
 	import javafx.scene.control.ScrollPane;
 
@@ -64,84 +65,107 @@
 	 * @see userinterface.MagicSquare#fillMatrix
 	 */
 	void createMagicSquare(ActionEvent event) {
-
-		//manages the data choosen by the user so it can be shown at the right side of the GUI
-		//_____________________________________________________________________________________
-		try {
-			//order given by the user
-			int order = Integer.parseInt(orderTextField.getText());
+		
+		//manages the exception by making a loop on the method until the user enters a valid information
+		boolean flag = true;
+		
+			//manages the data choosen by the user so it can be shown at the right side of the GUI
+			//_____________________________________________________________________________________
+			try {
+				//order given by the user
+				int order = Integer.parseInt(orderTextField.getText());
+		
+				//data choosen by the user
+				String centralbox = (String) centralboxComboBox.getValue();
+				String direction = (String) directionComboBox.getValue();
+				int magicalconstant = (order*((order*order)+1))/2;
+		
+				//value of the centralbox to create the MagicSquare
+				char cb = centralbox.charAt(0);
+		
+				//value of the direction to fill in the MagicSquare
+				int d = Integer.parseInt(direction.substring(0,1));
+				
+			//_____________________________________________________________________________________
 	
-			//data choosen by the user
-			String centralbox = (String) centralboxComboBox.getValue();
-			String direction = (String) directionComboBox.getValue();
-			int magicalconstant = (order*((order*order)+1))/2;
+				//condition to only creates odd MagicSquares 
+				if(order % 2 == 0) {
+					throw new NotAnOddException();
+				}
+				else if(cb=='U'&& (d == 3 || d ==4)) {
+					lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTH WEST AND NORTH EAST DIRECTIONS");
+				}
+				else if(cb=='D' && (d == 1 || d ==2)) {
+					lbMessage.setText("YOU CAN ONLY GO THROUGH SOUTH WEST AND SOUTH EAST DIRECTIONS");
+				}
+				else if(cb=='L' && (d == 2 || d == 4)) {
+					lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTHWEST AND SOUTH WEST DIRECTIONS");
+				}
+				else if(cb=='R' && (d == 1 || d == 3)) {
+					lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTHEAST AND SOUTH EAST DIRECTIONS");
+				}
+				else {
+					
+				//nothing gone wrong there's no reason to keep waiting for the user to enter the valid information
+					flag = false;
+			//______________________________________________________________________________________
 	
-			//value of the centralbox to create the MagicSquare
-			char cb = centralbox.charAt(0);
+				//creates and sets the right controls to show the MagicSquare generated on the GUI
+				GridPane gridpane = new GridPane();
+				borderpane.setCenter(scrollpane);
+				scrollpane.setContent(gridpane);
 	
-			//value of the direction to fill in the MagicSquare
-			int d = Integer.parseInt(direction.substring(0,1));
+				//creates the MagicSquare
+	
+				MagicSquare magicsquare = new MagicSquare(order);
+	
+			//______________________________________________________________________________________
+	
+				//Creates the MagicSquare
+				int[][] ms = magicsquare.determinateFillInOfMagicSquare(order, cb, d);
+	
+				//sets the labels to be read with the right messages on the GUI
+	
+				lbMessage.setText("¡Presence the magic of the algorithms!");
+				lbOrder.setText("" + order);;
+				lbCentralBox.setText(centralbox);
+				lbDirection.setText(direction);
+				lbMagicConstant.setText(" " + magicalconstant);
+	
+				//Generates a MagicSquare of buttons to be displayed on the GUI
+				for(int i=0;i<order;i++) {
+					for(int j=0;j<order;j++) {
+						gridpane.add(new Button(" "+ms[i][j] +" "),j,i);
+					}
+				}
 			
-		//_____________________________________________________________________________________
-
-			//condition to only creates odd MagicSquares 
-			if(order % 2 == 0) {
-				lbMessage.setText("THE ORDER NUMBER MUST BE ODD");
+				
+			//_______________________________________________________________________________________
+				
 			}
-			else if(cb=='U'&& (d == 3 || d ==4)) {
-				lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTH WEST AND NORTH EAST DIRECTIONS");
-			}
-			else if(cb=='D' && (d == 1 || d ==2)) {
-				lbMessage.setText("YOU CAN ONLY GO THROUGH SOUTH WEST AND SOUTH EAST DIRECTIONS");
-			}
-			else if(cb=='L' && (d == 2 || d == 4)) {
-				lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTHWEST AND SOUTH WEST DIRECTIONS");
-			}
-			else if(cb=='R' && (d == 1 || d == 3)) {
-				lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTHEAST AND SOUTH EAST DIRECTIONS");
-			}
-			else {
-
-		//______________________________________________________________________________________
-
-			//creates and sets the right controls to show the MagicSquare generated on the GUI
-			GridPane gridpane = new GridPane();
-			borderpane.setCenter(scrollpane);
-			scrollpane.setContent(gridpane);
-
-			//creates the MagicSquare
-
-			MagicSquare magicsquare = new MagicSquare(order);
-
-		//______________________________________________________________________________________
-
-			//Creates the MagicSquare
-			int[][] ms = magicsquare.determinateFillInOfMagicSquare(order, cb, d);
-
-			//sets the labels to be read with the right messages on the GUI
-
-			lbMessage.setText("¡Presence the magic of the algorithms!");
-			lbOrder.setText("" + order);;
-			lbCentralBox.setText(centralbox);
-			lbDirection.setText(direction);
-			lbMagicConstant.setText(" " + magicalconstant);
-
-			//Generates a MagicSquare of buttons to be displayed on the GUI
-			for(int i=0;i<order;i++) {
-				for(int j=0;j<order;j++) {
-					gridpane.add(new Button(" "+ms[i][j] +" "),j,i);
+		}
+		//______________________________________________________________________________________________________________________________________
+			
+			//catches the exception in the case of the user enters invalid type of data as Strings.
+		catch (IllegalArgumentException illegalargumentexception)
+			{
+				if(orderTextField.getText().equals("")) 
+				{
+					lbMessage.setText("You must Type a value to start the creation of the magic square");
+				}
+				else
+				{
+					lbMessage.setText("YOU CAN ONLY TYPE NUMBERS IN THE ORDER TEXT FIELD" + "\n" + illegalargumentexception.getMessage());
 				}
 			}
+		//______________________________________________________________________________________________________________________________________
 		
-			
-		//_______________________________________________________________________________________
-			
-		}
-	}
-	catch (IllegalArgumentException illegalargumentexception)
-		{
-			lbMessage.setText("YOU CAN ONLY TYPE NUMBERS IN THE ORDER TEXT FIELD" + " " + illegalargumentexception.getMessage());
-		}
-	}
-//_______________________________________________________________________________________________________________________________________
+			//catches the exception in the case of the user entering a number that is not odd.
+		catch (NotAnOddException notanoddexception) 
+			{
+				lbMessage.setText(notanoddexception.getMessage());
+			}
+		
+}
+//______________________________________________________________________________________________________________________________________________
 }

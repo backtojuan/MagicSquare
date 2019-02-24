@@ -31,8 +31,11 @@
 	 * <b>MagicSquare Constructor</b><br>
 	 * @param order the size that is going to have the MagicSquare
 	 */
-	public MagicSquare(int order) {
-		this.magicsquare = new int[order][order];
+	public MagicSquare(int order)
+	{
+
+			this.magicsquare = new int[order][order];
+		
 	}
 
 //__________________________________________________methods for this class__________________________________________________________
