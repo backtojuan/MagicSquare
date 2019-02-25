@@ -66,8 +66,10 @@
 	 * @throws IllegalArgumentException in the case that the user enters asked information that are not only numbers
 	 * @throws InvalidInformationException in the case that the user enters wrong asked information
 	 * @throws NullPointerException  in the case that the user does triggers the method without previously choosed asked information
+	 * @throws NegativeArraySizeException in the case that the user enters a negative number as order
 	 */
-	void createMagicSquare(ActionEvent event) {
+	void createMagicSquare(ActionEvent event) 
+		{
 		
 			//manages the data choosen by the user so it can be shown at the right side of the GUI
 			//_____________________________________________________________________________________
@@ -90,6 +92,10 @@
 	
 				//throwable exceptions block to only creates odd MagicSquares & valid fill in directions
 				if(order % 2 == 0) {
+					throw new InvalidInformationException(order,cb,d);
+				}
+				if(order<0) 
+				{
 					throw new InvalidInformationException(order,cb,d);
 				}
 				else if(cb=='U'&& (d == 3 || d ==4)) {
@@ -149,7 +155,7 @@
 			{
 				if(orderTextField.getText().equals("")) 
 				{
-					lbMessage.setText("You must Type a value to start the creation of the magic square");
+					lbMessage.setText("You must Type a value to start the creation of the Magic Square");
 				}
 				else
 				{
@@ -169,11 +175,10 @@
 			//catches the exception in the case that the user haven't choosed the central box and the direction
 		catch (NullPointerException nullpointerexception)
 			{
-				lbMessage.setText("You cannot create the magicsquare if you:" + 
+				lbMessage.setText("You cannot create the Magic Square if you:" + 
 				"\nhaven't choose the initial central box and the direction of fill-in" + 
 				"\ncaused by: " + nullpointerexception.getMessage());
-			}
-		
-}
+			}	
+	}
 //______________________________________________________________________________________________________________________________________________
 }

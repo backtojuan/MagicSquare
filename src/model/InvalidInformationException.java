@@ -49,6 +49,12 @@
 				report += "THE ORDER MUST BE AN ODD";
 			}
 			
+			//Order must be positive
+			if(this.invalidorder < 0)
+			{
+				report += "You cannot create a Magic Square with a negative order";
+			}
+			
 			//Direction cannot contain south in upper central box
 			else if(this.invalidcentralbox=='U'&& (this.invaliddirection == 3 || this.invaliddirection ==4))
 			{
