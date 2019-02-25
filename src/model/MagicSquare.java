@@ -25,7 +25,7 @@
 		public final static int SOUTHWEST = 3;
 		public final static int SOUTHEAST = 4;
 
-//__________________________________________________methods for this class__________________________________________________________
+//__________________________________________________Constructor method______________________________________________________________
 	
 	/**
 	 * <b>MagicSquare Constructor</b><br>
@@ -34,7 +34,7 @@
 	public MagicSquare(int order)
 	{
 
-			this.magicsquare = new int[order][order];
+		this.magicsquare = new int[order][order];
 		
 	}
 
@@ -112,7 +112,6 @@
 	 * this method fill the MagicSquare starting in the upper central box towards "North-West" Direction.<br><br>
 	 * @param  order the size of the Magic Square
 	 * @return the MagicSquare filled properly based on this specific case.
-	 * @throws NullPointerException in the case of the MagicSquare equals to null.
 	 */
 	public int[][] fillUpperNorthWestMS(int order){
 
@@ -161,7 +160,6 @@
 	 * this method fill the MagicSquare starting in the upper central box towards "North-East" Direction.<br><br>
 	 * @param order the size of the MagicSquare
 	 * @return the MagicSquare filled properly based on this specific case.
-	 * @throws NullPointerException in the case of the MagicSquare equals to null.
 	 */	
 	public int[][] fillUpperNorthEastMS(int order){
 
@@ -211,7 +209,6 @@
 	 * this method fill the MagicSquare starting in the lower central box towards "South-West" Direction.<br><br>
 	 * @param order the size of the MagicSquare
 	 * @return the MagicSquare filled properly based on this specific case.
-	 * @throws NullPointerException in the case of the MagicSquare equals to null.
 	 */
 	public int[][] fillLowerSouthWestMS(int order){
 
@@ -260,7 +257,6 @@
 	 * this method fill the MagicSquare starting in the lower central box towards "South-East" Direction.<br><br>
 	 * @param order the size of the MagicSquare
 	 * @return the MagicSquare filled properly based on this specific case.
-	 * @throws NullPointerException in the case of the MagicSquare equals to null.
 	 */
 	public int[][] fillLowerSouthEastMS(int order){
 		
@@ -309,7 +305,6 @@
 	 * this method fill the MagicSquare starting in the left sided central box towards "North-West" Direction.<br><br>
 	 * @param order the size of the MagicSquare
 	 * @return the MagicSquare filled properly based on this specific case.
-	 * @throws NullPointerException in the case of the MagicSquare equals to null.
 	 */	
 	public int[][] fillLeftNorthWestMS(int order){
 		
@@ -358,7 +353,6 @@
 	 * this method fill the MagicSquare starting in the left sided central box towards "South-West" Direction.<br><br>
 	 * @param order the size of the MagicSquare
 	 * @return the MagicSquare filled properly based on this specific case.
-	 * @throws NullPointerException in the case of the MagicSquare equals to null.
 	 */	
 	public int[][] fillLeftSouthWestMS(int order){
 		
@@ -408,7 +402,6 @@
 	 * this method fill the MagicSquare starting in the right sided central box towards "North-East" Direction.<br><br>
 	 * @param order the size of the MagicSquare
 	 * @return the MagicSquare filled properly based on this specific case.
-	 * @throws NullPointerException in the case of the MagicSquare equals to null.
 	 */
 	public int[][] fillRightNorthEastMS(int order){
 		
@@ -457,7 +450,6 @@
 	 * this method fill the MagicSquare starting in the right sided central box towards "South-East" Direction.<br><br>
 	 * @param order the size of the MagicSquare
 	 * @return the MagicSquare filled properly based on this specific case.
-	 * @throws NullPointerException in the case of the MagicSquare equals to null.
 	 */	
 	public int[][] fillRightSouthEastMS(int order){
 		

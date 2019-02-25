@@ -11,8 +11,8 @@
 	import javafx.event.ActionEvent;
 	import javafx.scene.layout.GridPane;
 	import model.MagicSquare;
-import model.NotAnOddException;
-import javafx.scene.control.Button;
+	import model.InvalidInformationException;
+	import javafx.scene.control.Button;
 	import javafx.scene.layout.BorderPane;
 	import javafx.scene.control.ScrollPane;
 
@@ -62,12 +62,12 @@ import javafx.scene.control.Button;
 	@FXML
 	/** this method allows to generate the magic square with the desired order given by the user. <br>
 	 * @param event the event that is caused by the user to trigger the method.
-	 * @see userinterface.MagicSquare#fillMatrix
+	 * @see userinterface.MagicSquare#determinateFillInOfMagicSquare
+	 * @throws IllegalArgumentException in the case that the user enters asked information that are not only numbers
+	 * @throws InvalidInformationException in the case that the user enters wrong asked information
+	 * @throws NullPointerException  in the case that the user does triggers the method without previously choosed asked information
 	 */
 	void createMagicSquare(ActionEvent event) {
-		
-		//manages the exception by making a loop on the method until the user enters a valid information
-		boolean flag = true;
 		
 			//manages the data choosen by the user so it can be shown at the right side of the GUI
 			//_____________________________________________________________________________________
@@ -88,28 +88,28 @@ import javafx.scene.control.Button;
 				
 			//_____________________________________________________________________________________
 	
-				//condition to only creates odd MagicSquares 
+				//throwable exceptions block to only creates odd MagicSquares & valid fill in directions
 				if(order % 2 == 0) {
-					throw new NotAnOddException();
+					throw new InvalidInformationException(order,cb,d);
 				}
 				else if(cb=='U'&& (d == 3 || d ==4)) {
-					lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTH WEST AND NORTH EAST DIRECTIONS");
+					throw new InvalidInformationException(order,cb,d);
 				}
 				else if(cb=='D' && (d == 1 || d ==2)) {
-					lbMessage.setText("YOU CAN ONLY GO THROUGH SOUTH WEST AND SOUTH EAST DIRECTIONS");
+					throw new InvalidInformationException(order,cb,d);
 				}
 				else if(cb=='L' && (d == 2 || d == 4)) {
-					lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTHWEST AND SOUTH WEST DIRECTIONS");
+					throw new InvalidInformationException(order,cb,d);
 				}
 				else if(cb=='R' && (d == 1 || d == 3)) {
-					lbMessage.setText("YOU CAN ONLY GO THROUGHT NORTHEAST AND SOUTH EAST DIRECTIONS");
+					throw new InvalidInformationException(order,cb,d);
 				}
+				
+			//______________________________________________________________________________________
+				
+				//nothing goes wrong, the program will going to execute everything correctly
 				else {
 					
-				//nothing gone wrong there's no reason to keep waiting for the user to enter the valid information
-					flag = false;
-			//______________________________________________________________________________________
-	
 				//creates and sets the right controls to show the MagicSquare generated on the GUI
 				GridPane gridpane = new GridPane();
 				borderpane.setCenter(scrollpane);
@@ -138,8 +138,6 @@ import javafx.scene.control.Button;
 						gridpane.add(new Button(" "+ms[i][j] +" "),j,i);
 					}
 				}
-			
-				
 			//_______________________________________________________________________________________
 				
 			}
@@ -161,9 +159,19 @@ import javafx.scene.control.Button;
 		//______________________________________________________________________________________________________________________________________
 		
 			//catches the exception in the case of the user entering a number that is not odd.
-		catch (NotAnOddException notanoddexception) 
+		catch (InvalidInformationException invalidinformationexception) 
 			{
-				lbMessage.setText(notanoddexception.getMessage());
+				lbMessage.setText(invalidinformationexception.getMessage());
+			}
+			
+		//______________________________________________________________________________________________________________________________________
+			
+			//catches the exception in the case that the user haven't choosed the central box and the direction
+		catch (NullPointerException nullpointerexception)
+			{
+				lbMessage.setText("You cannot create the magicsquare if you:" + 
+				"\nhaven't choose the initial central box and the direction of fill-in" + 
+				"\ncaused by: " + nullpointerexception.getMessage());
 			}
 		
 }

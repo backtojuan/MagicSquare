@@ -12,46 +12,64 @@
 	import org.junit.jupiter.api.Test;
 
 //_____________________________________________________Scenaries______________________________________________________________________
-
+	
+	/**
+	 * This class manage the neccesary relations and methods to test the methods of the model class MagicSquare by the JUnit Framework
+	 * @author Juan José Valencia Jaramillo
+	 * @version V_01_Frebruary_2019
+	 */
 	class MagicSquareTest{
 		
 		private MagicSquare magicsquare;
 		
-		//_______________________________________
-		
+		//_____________________________________________________________________________________________________________
+		/**
+		 * This method creates an scenary to test the constructor method of MagicSquare
+		 */
 		private void setUpScenary1() {
 			
 		}
-		//_______________________________________
-		
+		//_____________________________________________________________________________________________________________
+		/**
+		 * This method creates an scenary to test the "determinateFillInOfMagicSquare" method of MagicSquare 
+		 */
 		private void setUpScenary2() {
 			
 			int order = 7;
 			magicsquare = new MagicSquare(order);
 		}
-		//_______________________________________
-		
+		//_____________________________________________________________________________________________________________
+		/**
+		 * This method creates an scenary to evaluate the right magic constant in the filled MagicSquare
+		 */
 		private void setUpScenary3() {
 			
 			int order = 9;
 			magicsquare = new MagicSquare(order);
 		}
-		//_______________________________________
-		
+		//_____________________________________________________________________________________________________________
+		/**
+		 * This method creates an scenary to evaluate the right magic constant in the filled MagicSquare
+		 */
 		private void setUpScenary4() {
 			
 			int order = 11;
 			magicsquare = new MagicSquare(order);
 		}
-		//_______________________________________
-		
+		//_____________________________________________________________________________________________________________
+		/**
+		 * This method creates an scenary to evaluate the right magic constant in the filled MagicSquare
+		 */
 		private void setUpScenary5() {
 			
 			int order = 13;
 			magicsquare = new MagicSquare(order);
 		}
+		
 //____________________________________________________Test Methods____________________________________________________________________
-
+		/**
+		 * This method test the constructor of the magicSquare, evaluating that the object is not null and has the right dimensions
+		 */
 		@Test
 		void testMagicSquare() {
 			
@@ -67,7 +85,10 @@
 		}
 		
 		//_____________________________________________________________________________________________________________
-		
+		/**
+		 * This method test the "determinateFillInOfMagicSquare" method by applying different cases of filling in the same object
+		 * and validating that every case is good applied evaluating the process three times
+		 */
 		@Test
 		void testDeterminateFillInOfMagicSquare() {
 			
@@ -200,6 +221,9 @@
 		}
 	//_______________________________________________________________________________________________________________________
 		
+		/**
+		 * This method evaluates the value of the magic constant in the MagicSquare by validating at least 3 different cases
+		 */
 		@Test
 		void testMagicConstant() {
 			
@@ -215,17 +239,22 @@
 			int magiconstantinfirstdiagonal = 0;
 			int magiconstantinsecondiagonal = 0;
 			
+			int rcounter = 0;
+			int ccounter = 0;
+			
 			for(int i=0;i<magicsquare.getMatrix().length;i++) 
 			{	
 				for(int j=0;j<magicsquare.getMatrix()[i].length;j++) 
 				{
-					if(i==0) 
+					if(i==0||i==1||i==2||i==3||i==4||i==5||i==6||i==7||i==8) 
 					{
 						magiconstantinrows += magicsquare.getMatrix()[i][j];
+						rcounter++;
 					}
-					if(j==0) 
+					if(j==0||j==1||j==2||j==3||j==4||j==5||j==6||j==7||j==8) 
 					{
 						magiconstantincolumns += magicsquare.getMatrix()[i][j];
+						ccounter++;
 					}
 					if(i==j) 
 					{
@@ -237,11 +266,17 @@
 					{
 						magiconstantinsecondiagonal += magicsquare.getMatrix()[i][j];
 					}
+					if(rcounter == 369) {
+						assertEquals("The magic constant is not the expected one",369,magiconstantinrows);
+						magiconstantinrows = 0;
+					}
+					if(ccounter == 369) {
+						assertEquals("The magic constant is not the expected one",369,magiconstantincolumns);
+						magiconstantincolumns = 0;
+					}
 					
 				}
 			}
-			
-			assertEquals("The magic constant is not the expected one",369,magiconstantincolumns);
 			assertEquals("The magic constant is not the expected one",369,magiconstantinfirstdiagonal);
 			assertEquals("The magic constant is not the expected one",369,magiconstantinsecondiagonal);
 		//________________________________________________________________________________________________________
@@ -259,17 +294,22 @@
 			int magiconstantinfirstdiagonal2 = 0;
 			int magiconstantinsecondiagonal2 = 0;
 			
+			int rcounter2 = 0;
+			int ccounter2 = 0;
+			
 			for(int i=0;i<magicsquare.getMatrix().length;i++) 
 			{
 				for(int j=0;j<magicsquare.getMatrix()[i].length;j++) 
 				{
-					if(i==0) 
+					if(i==0||i==1||i==2||i==3||i==4||i==5||i==6||i==7||i==8||i==9||i==10) 
 					{
 						magiconstantinrows2 += magicsquare.getMatrix()[i][j];
+						rcounter2++;
 					}
-					if(j==0) 
+					if(j==0||j==1||j==2||j==3||j==4||j==5||j==6||j==7||j==8||j==9||j==10) 
 					{
 						magiconstantincolumns2 += magicsquare.getMatrix()[i][j];
+						ccounter2++;
 					}
 					if(i==j) 
 					{
@@ -281,11 +321,19 @@
 					{
 						magiconstantinsecondiagonal2 += magicsquare.getMatrix()[i][j];
 					}
+					if(rcounter2 == 671) 
+					{
+						assertEquals("The magic constant is not the expected one",671,magiconstantinrows2);
+						magiconstantinrows2 = 0;
+					}
+					if(ccounter2 == 671) 
+					{
+						assertEquals("The magic constant is not the expected one",671,magiconstantincolumns2);
+						magiconstantincolumns2 = 0;
+					}
 				}
 			}
 			
-			assertEquals("The magic constant is not the expected one",671,magiconstantinrows2);
-			assertEquals("The magic constant is not the expected one",671,magiconstantincolumns2);
 			assertEquals("The magic constant is not the expected one",671,magiconstantinfirstdiagonal2);
 			assertEquals("The magic constant is not the expected one",671,magiconstantinsecondiagonal2);
 		
@@ -304,17 +352,22 @@
 			int magiconstantinfirstdiagonal3 = 0;
 			int magiconstantinsecondiagonal3 = 0;
 			
+			int rcounter3 = 0;
+			int ccounter3 = 0;
+			
 			for(int i=0;i<magicsquare.getMatrix().length;i++) 
 			{
 				for(int j=0;j<magicsquare.getMatrix()[i].length;j++) 
 				{
-					if(i==0) 
+					if(i==0||i==1||i==2||i==3||i==4||i==5||i==6||i==7||i==8||i==9||i==10||i==11||i==12) 
 					{
 						magiconstantinrows3 += magicsquare.getMatrix()[i][j];
+						rcounter3++;
 					}
-					if(j==0) 
+					if(j==0||j==1||j==2||j==3||j==4||j==5||j==6||j==7||j==8||j==9||j==10||j==11||j==12) 
 					{
 						magiconstantincolumns3 += magicsquare.getMatrix()[i][j];
+						ccounter3++;
 					}
 					if(i==j) 
 					{
@@ -326,17 +379,28 @@
 					{
 						magiconstantinsecondiagonal3 += magicsquare.getMatrix()[i][j];
 					}
+					if(rcounter3 == 1105) 
+					{
+						assertEquals("The magic constant is not the expected one",671,magiconstantinrows3);
+						magiconstantinrows3 = 0;
+					}
+					if(ccounter3 == 1105) 
+					{
+						assertEquals("The magic constant is not the expected one",671,magiconstantincolumns3);
+						magiconstantincolumns3 = 0;
+					}
 				}
 			}
-			
-			assertEquals("The magic constant is not the expected one",1105,magiconstantinrows3);
-			assertEquals("The magic constant is not the expected one",1105,magiconstantincolumns3);
+		
 			assertEquals("The magic constant is not the expected one",1105,magiconstantinfirstdiagonal3);
 			assertEquals("The magic constant is not the expected one",1105,magiconstantinsecondiagonal3);
 		
 		}
 	//____________________________________________________________________________________________________________________________
-		
+		/**
+		 * This method test the getter method that returns the matrix associated with the MagicSquare object. Validates the right
+		 * dimensions and the non-null state of the object
+		 */
 		@Test
 		void getMatrixTest() {
 			setUpScenary2();
@@ -345,7 +409,18 @@
 			
 			assertEquals("The matrix does not have 7 rows",7, magicsquare.getMatrix().length);
 			assertEquals("The matrix does not have 7 columns",7, magicsquare.getMatrix().length);
+		
+			//__________________________________________________________________________________________
+			
+			setUpScenary4();
+			
+			assertNotNull("The matrix has not been intialized", magicsquare.getMatrix());
+			
+			assertEquals("The matrix does not have 7 rows",11, magicsquare.getMatrix().length);
+			assertEquals("The matrix does not have 7 columns",11, magicsquare.getMatrix().length);
 		}
+		
+		
 //____________________________________________________________________________________________________________________________________
 	
 }
