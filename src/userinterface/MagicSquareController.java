@@ -11,7 +11,7 @@
 	import javafx.event.ActionEvent;
 	import javafx.scene.layout.GridPane;
 	import model.MagicSquare;
-	import model.InvalidInformationException;
+	import customexception.InvalidInformationException;
 	import javafx.scene.control.Button;
 	import javafx.scene.layout.BorderPane;
 	import javafx.scene.control.ScrollPane;
