@@ -9,6 +9,8 @@
 	import javafx.scene.Parent;
 	import javafx.scene.Scene;
 	import javafx.stage.Stage;
+	import javafx.scene.image.Image;
+//__________________________________________________________________________________________________________________________________
 	/**
 	 * This class manage the necessary attributes and methods to manage and launch the User Interface.
 	 * 
@@ -22,8 +24,13 @@
 					FXMLLoader.load(getClass().getResource("MagicSquare.fxml"));
 	
 			Scene scene = new Scene(root);
-			stage.setTitle("Magic Square");
+			stage.setTitle("Magic Square Generator");
+			stage.setFullScreen(true);
 			stage.setScene(scene);
+			
+			
+			Image icon = new Image("userinterface/imgs/icon.png");
+			stage.getIcons().add(icon);
 			stage.show();
 		}
 //___________________________________________________________________________________________________________________________________

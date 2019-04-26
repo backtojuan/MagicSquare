@@ -5,16 +5,21 @@
 //________________________________________________used packages for this class______________________________________________________
 
 	import javafx.fxml.FXML;
+	import javafx.geometry.Pos;
 	import javafx.scene.control.ComboBox;
 	import javafx.scene.control.Label;
 	import javafx.scene.control.TextField;
 	import javafx.event.ActionEvent;
 	import javafx.scene.layout.GridPane;
+	import javafx.scene.paint.Color;
 	import model.MagicSquare;
+	import com.sun.javafx.geom.Shape;
 	import customexception.InvalidInformationException;
 	import javafx.scene.control.Button;
+	import javafx.scene.layout.Border;
 	import javafx.scene.layout.BorderPane;
 	import javafx.scene.control.ScrollPane;
+	import javafx.scene.image.Image;
 
 //_________________________________________________________attributes_______________________________________________________________
 
@@ -59,6 +64,18 @@
 		private MagicSquare magicsquare;
 
 //____________________________________________methods for this class_____________________________________________________________
+	
+	@FXML
+	/** this method initialize the nodes inside the stage.
+	 */
+	private void initialize() {
+		
+		scrollpane.setMaxHeight(500.0);
+		scrollpane.setMaxWidth(700.0);
+		
+	}
+		
+//_______________________________________________________________________________________________________________________________
 	@FXML
 	/** this method allows to generate the magic square with the desired order given by the user. <br>
 	 * @param event the event that is caused by the user to trigger the method.
@@ -98,6 +115,9 @@
 				{
 					throw new InvalidInformationException(order,cb,d);
 				}
+				if(order > 99) {
+					throw new InvalidInformationException(order,cb,d);
+				}
 				else if(cb=='U'&& (d == 3 || d ==4)) {
 					throw new InvalidInformationException(order,cb,d);
 				}
@@ -117,12 +137,16 @@
 				else {
 					
 				//creates and sets the right controls to show the MagicSquare generated on the GUI
+				
 				GridPane gridpane = new GridPane();
 				borderpane.setCenter(scrollpane);
 				scrollpane.setContent(gridpane);
+				gridpane.setAlignment(Pos.CENTER);
+				gridpane.setVgap(5);
+				gridpane.setHgap(5);
 	
 				//creates the MagicSquare
-	
+				
 				MagicSquare magicsquare = new MagicSquare(order);
 	
 			//______________________________________________________________________________________
@@ -141,12 +165,14 @@
 				//Generates a MagicSquare of buttons to be displayed on the GUI
 				for(int i=0;i<order;i++) {
 					for(int j=0;j<order;j++) {
-						gridpane.add(new Button(" "+ms[i][j] +" "),j,i);
-					}
+						Button button = new Button(" "+ms[i][j] +" ");
+						button.setPrefSize(50.0, 10.0);
+						button.setTextFill(Color.DARKRED);
+						gridpane.add(button,j,i);	
 				}
-			//_______________________________________________________________________________________
-				
+			//______________________________________________________________________________________
 			}
+		  }
 		}
 		//______________________________________________________________________________________________________________________________________
 			

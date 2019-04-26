@@ -46,13 +46,18 @@
 			//Order must be an odd
 			if(this.invalidorder%2 == 0)
 			{
-				report += "THE ORDER MUST BE AN ODD";
+				report += "\tTHE ORDER MUST BE AN ODD" + "\n";
 			}
 			
 			//Order must be positive
 			if(this.invalidorder < 0)
 			{
-				report += "You cannot create a Magic Square with a negative order";
+				report += "You cannot create a Magic Square with a negative order" + "\n";
+			}
+			
+			//Order can't be higher
+			if(this.invalidorder >99) {
+				report += "You cannot create a Magic Square with a high order than 99" + "\n";
 			}
 			
 			//Direction cannot contain south in upper central box

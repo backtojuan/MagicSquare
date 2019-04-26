@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.MagicSquareController">
+<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.MagicSquareController">
    <top>
-      <ImageView fitHeight="139.0" fitWidth="767.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="169.0" fitWidth="767.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@imgs/center.png" />
          </image>
@@ -25,11 +25,6 @@
    <left>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="398.0" fitWidth="213.0" layoutX="-6.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@imgs/white.jpg" />
-               </image>
-            </ImageView>
             <Label layoutX="19.0" layoutY="14.0" text="What order do you want?">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
@@ -99,17 +94,17 @@
       </Pane>
    </left>
    <center>
-      <ScrollPane fx:id="scrollpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="368.0" prefWidth="373.0" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="scrollpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="407.0" prefWidth="355.0" BorderPane.alignment="CENTER" />
    </center>
    <right>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="398.0" fitWidth="213.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="384.0" fitWidth="213.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imgs/white.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="244.0" fitWidth="196.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="244.0" fitWidth="196.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imgs/explanation.png" />
                </image>
